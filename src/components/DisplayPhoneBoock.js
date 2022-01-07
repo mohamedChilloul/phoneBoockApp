@@ -1,10 +1,29 @@
 import React from "react";
 
-const DisplayPhoneBoock = (props) =>{
+const DisplayPhoneBoock = ({filteredList, handleDelete}) =>{
     return(
-      <div>
-          {props.filteredList.map((p) =><li key={p.number}>{p.name} -- {p.number}</li>)}
-      </div>
+      <table border="1px solid">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Number</th>
+            <th>DELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            filteredList.map(
+              person=><tr key={person.id}>
+                <td>{person.id}</td>
+                <td>{person.name}</td>
+                <td>{person.number}</td>
+                <td><button onClick={()=>handleDelete(person.id)}>delete</button></td>
+              </tr>
+            )
+          }
+        </tbody>
+      </table>
     )
   }
 
