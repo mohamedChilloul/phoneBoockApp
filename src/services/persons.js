@@ -3,12 +3,11 @@ const baseUrl = 'http://localhost:3001/persons'
 
 const getPersons = ()=>{
     const req = axios.get(`${baseUrl}`)
-    return req.then(res =>res.data).catch(err =>console.log(err, 'from getPersons :'))
+    return req.then(res =>res.data)
 }
 const createPerson = (newObj)=>{
     const req = axios.post(`${baseUrl}`, newObj)
     return req.then(res =>res.data)
-    return req.then(res =>res.data).catch(err =>console.log(err, 'from addPerson :'))
 }
 
 const deletePerson = (id)=>{
@@ -19,7 +18,6 @@ const deletePerson = (id)=>{
 const updatePerson = (id, newObj)=>{
     const req = axios.put(`${baseUrl}/${id}`, newObj)
     return req.then(res=>res.data)
-    return req.then(res=>res.data).catch(er=>console.log(er, 'from update'))
 }
 
 export default {getPersons, createPerson, deletePerson, updatePerson}
