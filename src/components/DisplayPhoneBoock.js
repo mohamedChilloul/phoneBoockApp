@@ -16,8 +16,8 @@ const DisplayPhoneBoock = ({filteredList, handleDelete}) =>{
             filteredList.map(
               person=><tr key={person.id}>
                 <td>{person.id}</td>
-                <td>{person.name}</td>
-                <td>{person.number}</td>
+                <td className="name">{person.name}</td>
+                <td className="number">{person.number}</td>
                 <td><button onClick={()=>handleDelete(person.id)}>delete</button></td>
               </tr>
             )

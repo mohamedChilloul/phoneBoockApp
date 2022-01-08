@@ -7,7 +7,7 @@ const getPersons = ()=>{
 }
 const createPerson = (newObj)=>{
     const req = axios.post(`${baseUrl}`, newObj)
-    return req.then(res =>res.data).catch(err =>console.log(err, 'from addPerson :'))
+    return req.then(res =>res.data)
 }
 
 const deletePerson = (id)=>{
@@ -17,7 +17,7 @@ const deletePerson = (id)=>{
 
 const updatePerson = (id, newObj)=>{
     const req = axios.put(`${baseUrl}/${id}`, newObj)
-    return req.then(res=>res.data).catch(er=>console.log(er, 'from update'))
+    return req.then(res=>res.data)
 }
 
 export default {getPersons, createPerson, deletePerson, updatePerson}
