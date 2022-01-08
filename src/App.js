@@ -43,6 +43,22 @@ const App = () => {
     }
   }
 
+  useEffect(()=>{
+    personsService.getPersons().then(
+      initialPersons =>setPersons(initialPersons)
+    )
+  }, [])
+
+  const handleDelete = (id)=>{
+    const deletPers = persons.find(p =>p.id === id)
+    const confirm = window.confirm(`do you want to delete ${deletPers.name}`)
+    if (confirm){
+      personsService.deletePerson(id).then(r=>{
+        setPersons(persons.filter(p=>p.id !== id))
+      })
+    }
+  }
+
   const handleNameChange = (event)=>{
     setNewName(event.target.value)
   }
@@ -69,6 +85,9 @@ const App = () => {
           setMessage(null)
         },4000)
       })
+    //exist === -1 ?  : window.alert(`${number} is already added to phonebook`)
+    if(exist === -1){
+      personsService.createPerson(perObj).then(retPerson=>setPersons(persons.concat(retPerson)))
     }else{
       const existedPers = persons[exist]
       const id = existedPers.id 
@@ -91,6 +110,7 @@ const App = () => {
           setPersons(persons.filter(p => p.id !== id)) 
         }
         )
+        })
       }
     }
     setNewName('')
