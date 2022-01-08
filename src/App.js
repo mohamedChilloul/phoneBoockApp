@@ -30,32 +30,15 @@ const App = () => {
         setTimeout(()=>{
           setMessage(null)
         },5000)
-        
       }).catch(err=>{
         setSuccess(false)
         setMessage(`${deletPers.name} can't be deleted, because it has been deleted before !`)
         setTimeout(()=>{
           setMessage(null)
         },4000)
-        setPersons(persons.filter(p=>p.id !== deletPers.id))
-      })
-
-    }
-  }
-
-  useEffect(()=>{
-    personsService.getPersons().then(
-      initialPersons =>setPersons(initialPersons)
-    )
-  }, [])
-
-  const handleDelete = (id)=>{
-    const deletPers = persons.find(p =>p.id === id)
-    const confirm = window.confirm(`do you want to delete ${deletPers.name}`)
-    if (confirm){
-      personsService.deletePerson(id).then(r=>{
         setPersons(persons.filter(p=>p.id !== id))
       })
+
     }
   }
 
@@ -85,9 +68,6 @@ const App = () => {
           setMessage(null)
         },4000)
       })
-    //exist === -1 ?  : window.alert(`${number} is already added to phonebook`)
-    if(exist === -1){
-      personsService.createPerson(perObj).then(retPerson=>setPersons(persons.concat(retPerson)))
     }else{
       const existedPers = persons[exist]
       const id = existedPers.id 
@@ -110,7 +90,6 @@ const App = () => {
           setPersons(persons.filter(p => p.id !== id)) 
         }
         )
-        })
       }
     }
     setNewName('')
